@@ -1,0 +1,6 @@
+flask
+flask-socketio
+frida==16.2.1
+frida-tools==12.3.0
+paramiko
+simple-websocket

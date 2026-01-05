@@ -1,0 +1,9 @@
+Package: com.ayl.watchstack
+Name: MonitorTweak
+Version: 0.0.1
+Architecture: iphoneos-arm
+Description: iOS APP 隐私合规检测工具！
+Maintainer: AYL
+Author: AYL
+Section: Tweaks
+Depends: mobilesubstrate (>= 0.9.5000)

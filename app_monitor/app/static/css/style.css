@@ -1,0 +1,115 @@
+/* 全局基础 */
+html, body {
+    height: 100%;
+    margin: 0;
+    overflow: hidden; /* 防止最外层出现滚动条 */
+    background-color: #f8f9fa;
+}
+
+/* 主容器：除去顶部黑色 Navbar 后的区域 */
+.main-container {
+    /* Navbar 默认高度约为 56px，这里让容器占满剩余空间 */
+    height: calc(100% - 56px); 
+    display: flex;
+    flex-direction: column;
+}
+
+/* Tab 导航条样式微调 */
+.nav-tabs {
+    background-color: #e9ecef; /* 浅灰底色区分 Tab 区 */
+    border-bottom: 1px solid #dee2e6;
+    flex-shrink: 0; /* 防止 Tab 栏被压缩 */
+}
+
+.nav-tabs .nav-link {
+    color: #495057;
+    border: none;
+    margin-bottom: -1px;
+}
+
+.nav-tabs .nav-link.active {
+    font-weight: bold;
+    color: #0d6efd;
+    border-top: 3px solid #0d6efd; /* 顶部高亮条 */
+    border-left: 1px solid #dee2e6;
+    border-right: 1px solid #dee2e6;
+    background-color: #fff;
+}
+
+/* Tab 内容容器 */
+.tab-content {
+    flex: 1; /* 占据剩余所有高度 */
+    overflow: hidden; /* 防止内容溢出容器 */
+    position: relative;
+}
+
+/* 单个 Tab 面板 */
+.tab-pane {
+    height: 100%; /* 面板高度撑满父容器 */
+    overflow: hidden; /* 内部再进行滚动控制 */
+}
+
+/* === 表格区域样式 === */
+
+/* 工具栏 */
+.toolbar {
+    flex-shrink: 0;
+}
+
+/* 表格滚动 */
+.table-responsive {
+    overflow-y: auto; /* 仅让表格区域垂直滚动 */
+    border-top: 1px solid #dee2e6;
+}
+
+/* 表头固定 */
+.sticky-top {
+    z-index: 1020;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* 应用图标 */
+.app-icon {
+    width: 40px; 
+    height: 40px; 
+    border-radius: 8px;
+    object-fit: cover;
+    border: 1px solid #dee2e6;
+}
+
+.no-icon {
+    width: 40px; height: 40px; border-radius: 8px;
+    background-color: #eee;
+    display: flex; align-items: center; justify-content: center;
+    color: #999; font-size: 10px; margin: 0 auto;
+}
+
+/* === 竖线样式  === */
+.table-v-line th,
+.table-v-line td {
+    border-right: 1px solid #dee2e6;
+}
+.table-v-line th:last-child,
+.table-v-line td:last-child {
+    border-right: none;
+}
+
+/* === 表格行悬停高亮 (浅蓝色) === */
+.table-hover > tbody > tr:hover > *,
+.table-hover > tbody > tr:hover th,
+.table-hover > tbody > tr:hover td {
+    /* 设置 Bootstrap 变量 */
+    --bs-table-accent-bg: #e0f0ff !important;
+    
+    /* 设置背景色 */
+    background-color: #e0f0ff !important;
+    
+    /* 设置文字颜色 */
+    color: #0056b3 !important;
+    
+    /*  确保阴影不会遮挡背景 */
+    box-shadow: inset 0 0 0 9999px #e0f0ff !important;
+    
+    cursor: pointer; /* 鼠标变成手型，提示可点击 */
+    transition: all 0.1s ease-in-out;
+}
