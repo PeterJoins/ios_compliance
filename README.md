@@ -1,4 +1,4 @@
-# 🕵️ iOS 隐私合规检测系统
+# 🕵️ iOS App 隐私合规检测系统
 [![Python](https://img.shields.io/badge/Python-3.8%2B-blue.svg)](https://www.python.org/)
 [![Flask](https://img.shields.io/badge/Flask-2.x-green.svg)](https://flask.palletsprojects.com/)
 [![Frida](https://img.shields.io/badge/Frida-16.2.1-red.svg)](https://frida.re/)
