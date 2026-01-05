@@ -27,11 +27,14 @@
 -   **隐私行为分布**：通过环形图展示 IDFA、剪贴板、设备信息等敏感行为的占比。
 -   **网络请求统计**：自动统计请求频次最高的 Top 10 域名。
 -   **实时计数**：动态更新各类监控事件的总量。
+ ![](app_monitor/app/static/img/数据总览.png)
+
 
 ### 2. 📱 应用管理
 -   自动列出设备上已安装的用户应用（User Apps）。
 -   提取并显示应用图标、Bundle ID 和版本号。
 -   提供一键开启/停止监控入口。
+ ![](app_monitor/app/static/img/应用信息.png)
 
 ### 3. 📝 信息采集 (Privacy Monitor)
 重点监控 App 的敏感 API 调用，识别设备指纹收集行为：
@@ -42,6 +45,8 @@
 -   **PhotoLibrary** (获取相册信息)
 -   **Contacts** (读取通讯录数据等)
 -   *支持查看详细的调用堆栈，快速定位业务代码位置。*
+![](app_monitor/app/static/img/信息采集.png)
+![](app_monitor/app/static/img/调用堆栈信息.png)
 
 ### 4. 📂 文件监控 (File Monitor)
 监控 App 对文件系统的操作：
@@ -50,11 +55,13 @@
 -   **读取** (`fileHandleForReadingAtPath`)
 -   **复制** (`copyItemAtPath`)
 -   *支持行内展开查看详细的调用堆栈。*
+![](app_monitor/app/static/img/文件监控信息.png)
 
 ### 5. 🌐 网络监控 (Network Monitor)
 -   全面 Hook `NSURLSession` 等底层 API。
 -   支持 **GET** 、 **POST** 和 **HEAD** 等请求捕获。
 -   **Raw Request 查看**：支持查看完整的 HTTP Headers 和 Body 数据（自动格式化 JSON）。
+![](app_monitor/app/static/img/网络监控.png)
 
 ### 6. 🛡️ 高级特性
 -   **双模式支持**：
@@ -62,7 +69,7 @@
     -   **Tweak 模式**：通过 SSH 部署动态库，App 重启后生效，支持断开 USB 后的持久化监控，**自带反反调试能力**。
 -   **防锁屏**：监控开启后自动禁止屏幕休眠（Frida 模式）。
 -   **断线重连**：前端 UI 具备完善的状态管理和错误恢复机制。
-
+![](app_monitor/app/static/img/监控模式选择.png)
 ---
 
 ## 💻 环境要求
