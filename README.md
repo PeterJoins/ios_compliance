@@ -128,11 +128,11 @@ make package
 ```
 编译成功后，在 .theos/obj/debug/ 目录下会生成 MonitorTweak.dylib。
 ### 3. 部署插件文件
-将生成的 MonitorTweak.dylib 复制到 Python 项目的 app/tweak_files/ 目录下，并重命名为 monitor.dylib。
+将生成的 MonitorTweak.dylib 复制到 Python 项目的 app/tweak_libs/ 目录下。
 ```bash
 # 示例命令
-mkdir -p app/tweak_files
-cp path/to/MonitorTweak.dylib app/tweak_files/monitor.dylib
+mkdir -p app/tweak_libs
+cp path/to/MonitorTweak.dylib app_monitor/app/tweak_libs/MonitorTweak.dylib
 ```
 ### 4. 使用 Tweak 模式启动
 1. 在 Web 界面点击 📡 开启监控。
