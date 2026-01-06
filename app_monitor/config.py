@@ -1,8 +1,8 @@
 import os
 
 class Config:
-    DEBUG = True
-    SECRET_KEY = os.environ.get('SECRET_KEY') or 'dev-key'
+    DEBUG = False
+    #SECRET_KEY = os.environ.get('SECRET_KEY') or 'dev-key'
     FRIDA_TIMEOUT = 10 
     SERVER_PORT = 8080
     

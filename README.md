@@ -177,3 +177,4 @@ tweak_monitor/
 ## 🤝 贡献与反馈
 欢迎提交 Issue 或 Pull Request 来完善此工具！
 如果觉得好用，请给项目点个 ⭐ Star 支持一下！
+<img src="app_monitor/app/static/img/技术交流群.png" width="40%" />
