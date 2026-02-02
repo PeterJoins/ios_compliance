@@ -3,8 +3,7 @@
 ## 📌 版本信息
 
 - **项目名称**: iOS App 隐私合规检测系统
-- **作者**: [你的名字]
-- **基于**: [PeterJoins/ios_compliance](https://github.com/PeterJoins/ios_compliance)
+- **基于**: [https://github.com/aylhex/ios_compliance)
 - **许可证**: LGPL-2.1
 
 ---
@@ -180,7 +179,7 @@ python run.py
 
 ## 🤝 致谢
 
-- 感谢 [PeterJoins](https://github.com/PeterJoins) 创建的原项目
+- 感谢 [aylhex]https://github.com/aylhex/ios_compliance 创建的原项目
 - 感谢 [Frida](https://frida.re/) 提供的动态注入框架
 - 感谢 [Theos](https://theos.dev/) 提供的越狱开发工具链
 
@@ -189,3 +188,4 @@ python run.py
 ## 📄 许可证
 
 本项目基于 LGPL-2.1 许可证开源，详情请查看 [LICENSE.txt](LICENSE.txt)
+
