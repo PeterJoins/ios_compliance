@@ -3,7 +3,8 @@
 // =================================================================
 
 // 全局环境与状态
-const _global = typeof globalThis !== 'undefined' ? globalThis : (0, eval)("this");
+// [修复] 由于多个脚本文件会被拼接到同一作用域，避免使用 const/let 重复声明同名标识符导致 SyntaxError
+var _global = typeof globalThis !== 'undefined' ? globalThis : (0, eval)("this");
 _global.hooksLoaded = false;
 
 // RPC 导出
@@ -44,6 +45,8 @@ rpc.exports = {
             { name: "网络监控", fn: "startNetworkHook" },
             { name: "文件监控", fn: "startFileHook" },
             { name: "隐私监控", fn: "startPrivacyHook" },
+            // [新增] 传感器监控（之前未加入loader，导致大概率不生效）
+            { name: "传感器监控", fn: "startSensorHook" },
             // [核心修改] 添加 SDK 检测模块入口
             { name: "SDK检测", fn: "startSDKCheck" } 
         ];

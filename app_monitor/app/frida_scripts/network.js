@@ -174,4 +174,46 @@ function startNetworkHook() {
             });
         }
     } catch (e) { console.error("[Network] Hook 异常: " + e); }
+
+
+  // ========== 网络信息监控 ==========
+if (ObjC.available) {
+    // 蜂窝网络信息
+    var CTTelephonyNetworkInfo = ObjC.classes.CTTelephonyNetworkInfo;
+    if (CTTelephonyNetworkInfo) {
+        Interceptor.attach(CTTelephonyNetworkInfo['- init'].implementation, {
+            onEnter: function(args) {
+                send({
+                    type: 'network',
+                    category: 'NetworkInfo',
+                    subcategory: 'Cellular',
+                    method: 'CTTelephonyNetworkInfo_init',
+                    details: {
+                        action: '初始化蜂窝网络信息',
+                        timestamp: new Date().toISOString()
+                    }
+                });
+            }
+        });
+    }
+
+    // IP地址获取
+    var getifaddrs = Module.findExportByName(null, 'getifaddrs');
+    if (getifaddrs) {
+        Interceptor.attach(getifaddrs, {
+            onEnter: function(args) {
+                send({
+                    type: 'network',
+                    category: 'NetworkInfo',
+                    subcategory: 'IPAddress',
+                    method: 'getifaddrs',
+                    details: {
+                        action: '获取网络接口信息',
+                        timestamp: new Date().toISOString()
+                    }
+                });
+            }
+        });
+    }
+}
 }

@@ -25,6 +25,18 @@
         .monitor-active { animation: pulse-red 2s infinite; }
         /* 堆栈详情行的左侧边框 */
         .stack-trace-box { border-left: 4px solid #0d6efd; }
+
+        /* 新增：传感器卡片样式 */
+        .sensor-card { transition: all 0.3s ease; }
+        .sensor-card:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        .sensor-icon { font-size: 1.8rem; }
+        .sensor-count { font-size: 1.5rem; font-weight: 700; }
+        .count-up { animation: countUp 0.5s ease-out; }
+        @keyframes countUp {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); color: #dc3545; }
+            100% { transform: scale(1); }
+        }
     </style>
 </head>
 <body>
@@ -35,7 +47,7 @@
             <a class="navbar-brand d-flex align-items-center" href="#">
                 <span class="fs-4 me-2">🕵️</span> <span class="d-none d-md-block">iOS App 隐私合规检测</span>
             </a>
-            
+
             <!-- 全局监控状态条 (默认隐藏) -->
             <div id="global-monitor-bar" class="d-none align-items-center bg-danger rounded-pill px-3 py-1 mx-auto monitor-active">
                 <span class="spinner-grow spinner-grow-sm text-white me-2"></span>
@@ -53,7 +65,7 @@
 
     <!-- 主容器 -->
     <div class="container-fluid p-0 main-container">
-        
+
         <!-- Tab 标签页 -->
         <ul class="nav nav-tabs px-2 pt-2 bg-light border-bottom-0" role="tablist">
             <li class="nav-item"><button class="nav-link active" data-bs-toggle="tab" data-bs-target="#app-info">📱 应用信息</button></li>
@@ -65,7 +77,7 @@
 
         <!-- Tab 内容 -->
         <div class="tab-content bg-white h-100 position-relative">
-            
+
             <!-- Tab 1: 应用信息 -->
             <div class="tab-pane fade show active h-100" id="app-info">
                 <div class="d-flex flex-column h-100">
@@ -82,11 +94,11 @@
                         </button>
                     </div>
                     <!-- [修改结束] -->
-                    
+
                     <!-- [修改] 删除了这里的 id="loader" div 块 -->
 
                     <div id="alertBox" class="alert d-none m-0 rounded-0"></div>
-                    
+
                     <div class="table-responsive flex-fill">
                         <table class="table table-striped table-hover table-v-line align-middle mb-0">
                             <thead class="table-dark sticky-top">
@@ -103,7 +115,7 @@
                                     <tr>
                                         <td colspan="5" class="p-0 border-0">
                                             <!-- 修改 style: 使用 calc(100vh - 200px) 实现精确铺满 -->
-                                            <div class="d-flex flex-column align-items-center justify-content-center text-muted" 
+                                            <div class="d-flex flex-column align-items-center justify-content-center text-muted"
                                                 style="height: calc(100vh - 200px);">
                                                 <div class="fs-1 mb-3">👋</div>
                                                 <h5 class="fw-light">准备就绪</h5>
@@ -126,10 +138,10 @@
                             <span class="badge bg-info text-dark">Privacy</span>
                             <span class="ms-2 text-muted small d-none d-md-inline">敏感信息 (IDFV/位置/剪贴板等)</span>
                         </div>
-                        
+
                         <!-- [新增] 搜索框和按钮组 (推到右侧) -->
                         <div class="ms-auto d-flex align-items-center">
-                            <input type="text" id="infoSearch" class="form-control form-control-sm me-2" 
+                            <input type="text" id="infoSearch" class="form-control form-control-sm me-2"
                                    placeholder="🔍 搜类型/函数/方法..." style="width: 180px;">
                             <button class="btn btn-sm btn-outline-secondary text-nowrap" onclick="clearInfoLogs()">🗑️ 清空</button>
                         </div>
@@ -163,15 +175,15 @@
                             <span class="badge bg-warning text-dark">File Monitor</span>
                             <span class="ms-2 text-muted small d-none d-md-inline">文件操作 (创建/删除)</span>
                         </div>
-                        
+
                         <!-- [新增] 搜索框 -->
                         <div class="ms-auto d-flex align-items-center">
-                            <input type="text" id="fileSearch" class="form-control form-control-sm me-2" 
+                            <input type="text" id="fileSearch" class="form-control form-control-sm me-2"
                                    placeholder="🔍 搜函数/操作/路径..." style="width: 180px;">
                             <button class="btn btn-sm btn-outline-secondary text-nowrap" onclick="clearFileLogs()">🗑️ 清空</button>
                         </div>
                     </div>
-                    
+
                     <!-- 表格保持不变 -->
                     <div class="table-responsive flex-fill bg-white">
                         <table class="table table-sm table-hover table-v-line mb-0" style="font-size: 13px;">
@@ -199,15 +211,15 @@
                             <span class="badge bg-primary">Network</span>
                             <span class="ms-2 text-muted small d-none d-md-inline">网络请求日志</span>
                         </div>
-                        
+
                         <!-- [新增] 搜索框 -->
                         <div class="ms-auto d-flex align-items-center">
-                            <input type="text" id="netSearch" class="form-control form-control-sm me-2" 
+                            <input type="text" id="netSearch" class="form-control form-control-sm me-2"
                                    placeholder="🔍 搜 Method/URL..." style="width: 180px;">
                             <button class="btn btn-sm btn-outline-secondary text-nowrap" onclick="clearNetLogs()">🗑️ 清空</button>
                         </div>
                     </div>
-                    
+
                     <!-- 表格保持不变 -->
                     <div class="table-responsive flex-fill bg-white">
                         <table class="table table-sm table-hover table-v-line mb-0" style="font-size: 13px;">
@@ -230,7 +242,7 @@
             <div class="tab-pane fade h-100" id="dashboard-view">
                 <div class="container-fluid h-100 overflow-auto p-4 bg-light">
                     <div class="row g-4">
-                        
+
                         <!-- 1. 隐私合规统计卡片 -->
                         <div class="col-md-6">
                             <div class="card shadow-sm border-0 h-100">
@@ -265,7 +277,112 @@
                             </div>
                         </div>
 
-                        <!-- 3. HTTP 方法统计 (可选) -->
+                        <!-- 3. 传感器监控卡片 (新增) -->
+                        <div class="col-md-12">
+                            <div class="card shadow-sm border-0 sensor-card">
+                                <div class="card-header bg-white border-0 pt-3 ps-3">
+                                    <h5 class="card-title text-warning fw-bold">
+                                        <i class="bi bi-cpu me-2"></i>传感器监控
+                                    </h5>
+                                    <small class="text-muted">运动、环境、生物传感器调用统计</small>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row g-3">
+                                        <!-- 运动传感器 -->
+                                        <div class="col-md-3 col-6">
+                                            <div class="d-flex align-items-center p-3 border rounded bg-light">
+                                                <div class="me-3 text-primary sensor-icon">
+                                                    <i class="bi bi-speedometer2"></i>
+                                                </div>
+                                                <div>
+                                                    <h6 class="mb-1">加速度计</h6>
+                                                    <h4 id="accelerometerCount" class="mb-0 sensor-count">0</h4>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 col-6">
+                                            <div class="d-flex align-items-center p-3 border rounded bg-light">
+                                                <div class="me-3 text-success sensor-icon">
+                                                    <i class="bi bi-compass"></i>
+                                                </div>
+                                                <div>
+                                                    <h6 class="mb-1">陀螺仪</h6>
+                                                    <h4 id="gyroscopeCount" class="mb-0 sensor-count">0</h4>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 col-6">
+                                            <div class="d-flex align-items-center p-3 border rounded bg-light">
+                                                <div class="me-3 text-danger sensor-icon">
+                                                    <i class="bi bi-magnet"></i>
+                                                </div>
+                                                <div>
+                                                    <h6 class="mb-1">磁力计</h6>
+                                                    <h4 id="magnetometerCount" class="mb-0 sensor-count">0</h4>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 col-6">
+                                            <div class="d-flex align-items-center p-3 border rounded bg-light">
+                                                <div class="me-3 text-info sensor-icon">
+                                                    <i class="bi bi-signal"></i>
+                                                </div>
+                                                <div>
+                                                    <h6 class="mb-1">距离传感器</h6>
+                                                    <h4 id="proximityCount" class="mb-0 sensor-count">0</h4>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 4. 新增隐私监控卡片 (新增) -->
+                        <div class="col-md-12">
+                            <div class="card shadow-sm border-0 sensor-card">
+                                <div class="card-header bg-white border-0 pt-3 ps-3">
+                                    <h5 class="card-title text-info fw-bold">
+                                        <i class="bi bi-shield-plus me-2"></i>新增隐私监控
+                                    </h5>
+                                    <small class="text-muted">健康、家庭、麦克风、日历等权限调用</small>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row g-3">
+                                        <div class="col-md-3 col-6">
+                                            <div class="text-center p-3 border rounded bg-light">
+                                                <i class="bi bi-heart-pulse fa-2x text-danger mb-2 sensor-icon"></i>
+                                                <h6>健康数据</h6>
+                                                <h3 id="healthCount" class="sensor-count">0</h3>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 col-6">
+                                            <div class="text-center p-3 border rounded bg-light">
+                                                <i class="bi bi-house-door fa-2x text-warning mb-2 sensor-icon"></i>
+                                                <h6>家庭数据</h6>
+                                                <h3 id="homekitCount" class="sensor-count">0</h3>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 col-6">
+                                            <div class="text-center p-3 border rounded bg-light">
+                                                <i class="bi bi-mic fa-2x text-success mb-2 sensor-icon"></i>
+                                                <h6>麦克风</h6>
+                                                <h3 id="microphoneCount" class="sensor-count">0</h3>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 col-6">
+                                            <div class="text-center p-3 border rounded bg-light">
+                                                <i class="bi bi-calendar-check fa-2x text-primary mb-2 sensor-icon"></i>
+                                                <h6>日历</h6>
+                                                <h3 id="calendarCount" class="sensor-count">0</h3>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 5. HTTP 方法统计 -->
                         <div class="col-md-12">
                             <div class="card shadow-sm border-0">
                                 <div class="card-header bg-white border-0 pt-3 ps-3">
@@ -288,28 +405,34 @@
                                         <h2 class="display-4 fw-bold text-warning" id="count-file">0</h2>
                                         <p class="text-muted">文件操作次数</p>
                                     </div>
+                                    <!-- 新增传感器计数 -->
+                                    <div class="border-end"></div>
+                                    <div>
+                                        <h2 class="display-4 fw-bold text-info" id="count-sensor">0</h2>
+                                        <p class="text-muted">传感器调用</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
 
 
-                        <!-- 4. SDK 检测结果卡片 -->
+                        <!-- 6. SDK 检测结果卡片 -->
                         <div class="col-md-12">
                             <div class="card shadow-sm border-0 h-100">
                                 <!-- [修改] 增加 align-items-center 实现垂直居中 -->
                                 <div class="card-header bg-white border-0 pt-3 ps-3 d-flex justify-content-between align-items-center">
-                                    
+
                                     <h5 class="card-title text-dark fw-bold mb-0">
                                         <i class="bi bi-box-seam me-2"></i>第三方 SDK 清单
                                     </h5>
-                                    
+
                                     <!-- [修改] 美化徽章：胶囊形状、蓝色半透明背景、增加内边距 -->
-                                    <span class="badge rounded-pill bg-primary bg-opacity-10 text-primary border border-primary px-3 py-2" 
-                                        id="sdk-count" 
+                                    <span class="badge rounded-pill bg-primary bg-opacity-10 text-primary border border-primary px-3 py-2"
+                                        id="sdk-count"
                                         style="font-size: 13px; letter-spacing: 0.5px;">
                                         等待分析...
                                     </span>
-                                    
+
                                 </div>
                                 <div class="card-body p-0">
                                     <!-- 表格内容保持不变 -->
@@ -367,7 +490,7 @@
             </div>
         </div>
     </div>
-    
+
     <!-- === 堆栈信息 Modal  === -->
     <div class="modal fade" id="stackModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
@@ -377,7 +500,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body p-0">
-                    <div id="stackContent" class="m-0 p-3 font-monospace small" 
+                    <div id="stackContent" class="m-0 p-3 font-monospace small"
                         style="background-color: #f8f9fa; color: #333; font-size: 12px; min-height: 200px;
                                 white-space: pre-wrap;       /* 核心：保留换行符但允许自动换行 */
                                 word-break: break-all;       /* 核心：强制切断长单词(如Base64) */
@@ -408,7 +531,7 @@
                             <label class="btn btn-outline-dark" for="modeTweak">Tweak (越狱插件)</label>
                         </div>
                     </div>
-                    
+
                     <div id="tweakSettings" class="d-none">
                         <div class="mb-3">
                             <label class="form-label">手机 IP 地址 (SSH)</label>
@@ -430,6 +553,50 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // 新增：传感器和隐私监控处理函数
+        // 注意：sensor_event 和 privacy_event 的监听器已在 socket.js 中统一处理
+        // 这里保留辅助函数用于直接调用
+
+        // 辅助函数：获取传感器计数显示元素
+        function getSensorElement(category) {
+            const counterMap = {
+                'Accelerometer': 'accelerometerCount',
+                'Gyroscope': 'gyroscopeCount',
+                'Magnetometer': 'magnetometerCount',
+                'Proximity': 'proximityCount'
+            };
+            const counterId = counterMap[category];
+            return counterId ? document.getElementById(counterId) : null;
+        }
+
+        // 辅助函数：获取隐私计数显示元素
+        function getPrivacyElement(category) {
+            const counterMap = {
+                'Health': 'healthCount',
+                'HomeKit': 'homekitCount',
+                'Microphone': 'microphoneCount',
+                'Calendar': 'calendarCount'
+            };
+            const counterId = counterMap[category];
+            return counterId ? document.getElementById(counterId) : null;
+        }
+
+        // 辅助函数：添加计数动画效果
+        function addCountAnimation(element) {
+            if (element) {
+                element.classList.add('count-up');
+                setTimeout(() => element.classList.remove('count-up'), 500);
+            }
+        }
+
+        // 页面加载完成后初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('[UI] 隐私监控辅助函数已加载');
+        });
+    </script>
+
     <script type="module" src="{{ url_for('static', filename='js/main.js') }}"></script>
 </body>
 </html>

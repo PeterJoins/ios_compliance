@@ -2,6 +2,7 @@ import frida
 from app.utils.image_helper import bytes_to_base64
 from config import Config
 
+
 class IOSDeviceService:
     @staticmethod
     def get_device():
@@ -26,7 +27,7 @@ class IOSDeviceService:
             print(f"[-] Frida 共扫描到 {len(raw_apps)} 个进程/应用")
 
             clean_apps = []
-            
+
             for app in raw_apps:
                 # 获取路径，如果获取失败默认为空字符串
                 path = app.parameters.get('path', '')
@@ -34,10 +35,10 @@ class IOSDeviceService:
 
                 # 过滤逻辑
                 is_user_app = any(path.startswith(prefix) for prefix in Config.APP_PATH_PREFIXES)
-                
+
                 if is_user_app:
-                    #print(f"[+] 匹配到用户应用: {name}")
-                    
+                    # print(f"[+] 匹配到用户应用: {name}")
+
                     # 处理图标
                     icon_b64 = None
                     icons = app.parameters.get('icons', [])
@@ -55,9 +56,9 @@ class IOSDeviceService:
                         "path": path,
                         "icon": icon_b64
                     })
-            
+
             print(f"[-] 过滤后剩余用户应用: {len(clean_apps)} 个")
-            
+
             # 按名称排序
             clean_apps.sort(key=lambda x: x['name'])
             return clean_apps

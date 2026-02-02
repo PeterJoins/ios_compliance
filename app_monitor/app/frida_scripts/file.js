@@ -1,10 +1,10 @@
 // =================================================================
-// 文件监控模块 (File Monitor) 
+// 文件监控模块 (File Monitor)
 // =================================================================
 
 function startFileHook() {
     console.log("[File Monitor] 加载模块: File Monitor 模块");
-    
+
     // 防止 ObjC 未定义导致脚本崩溃
     if (typeof ObjC === 'undefined') {
         console.log("[File Monitor] 错误: 当前环境找不到 ObjC 对象，无法监控文件操作。");
@@ -16,14 +16,27 @@ function startFileHook() {
         return;
     }
 
+    // 堆栈跟踪配置
+    const CONFIG = {
+        // 文件操作通常非常频繁，启用堆栈可能导致严重性能问题
+        // 建议：除非必要调试，否则保持 false
+        enableStack: false
+    };
+
     // 发送文件操作日志的
     function sendFileLog(context, funcName, opType, pathInfo) {
-        var stackStr = "Stack unavailable";
-        try {
-            stackStr = Thread.backtrace(context, Backtracer.FUZZY)
-                .map(DebugSymbol.fromAddress)
-                .join('\n');
-        } catch (e) {}
+        // [性能优化] 文件操作高频，默认禁用堆栈
+        // 如需启用堆栈，请将 CONFIG.enableStack 改为 true
+        var stackStr = "Disabled";
+        if (CONFIG.enableStack) {
+            try {
+                stackStr = Thread.backtrace(context, Backtracer.FUZZY)
+                    .map(DebugSymbol.fromAddress)
+                    .join('\n');
+            } catch(e) {
+                stackStr = "获取堆栈失败";
+            }
+        }
 
         send({
             "type": "file",

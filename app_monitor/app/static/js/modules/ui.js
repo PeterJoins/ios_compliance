@@ -145,13 +145,17 @@ export const UI = {
 
         let badgeClass = 'bg-secondary text-secondary';
         const catLower = category.toLowerCase();
-        
+
         if (catLower.includes('idfa')) badgeClass = 'bg-primary bg-opacity-10 text-primary border border-primary';
         else if (catLower.includes('idfv')) badgeClass = 'bg-info bg-opacity-10 text-info border border-info';
         else if (catLower.includes('pasteboard') || catLower.includes('剪贴板')) badgeClass = 'bg-danger bg-opacity-10 text-danger border border-danger';
         else if (catLower.includes('location')) badgeClass = 'bg-warning bg-opacity-10 text-warning border border-warning';
         else if (catLower.includes('photolibrary')) badgeClass = 'bg-success bg-opacity-10 text-success border border-success';
         else if (catLower.includes('contacts')) badgeClass = 'bg-dark bg-opacity-10 text-dark border border-dark';
+        else if (catLower.includes('microphone')) badgeClass = 'bg-success bg-opacity-10 text-success border border-success';
+        else if (catLower.includes('health')) badgeClass = 'bg-danger bg-opacity-10 text-danger border border-danger';
+        else if (catLower.includes('homekit')) badgeClass = 'bg-warning bg-opacity-10 text-warning border border-warning';
+        else if (catLower.includes('calendar')) badgeClass = 'bg-primary bg-opacity-10 text-primary border border-primary';
         else badgeClass = 'bg-dark bg-opacity-10 text-dark border border-dark';
 
         const safeStack = encodeURIComponent(stack);
